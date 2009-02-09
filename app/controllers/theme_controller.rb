@@ -6,7 +6,7 @@ class ThemeController < ActionController::Base
     render_theme_item(:stylesheets, params[:filename], 'text/css; charset=utf-8')
   end
 
-  def javascript
+  def javascripts
     render_theme_item(:javascripts, params[:filename], 'text/javascript; charset=utf-8')
   end
 
