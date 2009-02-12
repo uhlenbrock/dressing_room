@@ -1,5 +1,6 @@
 class Theme
   
+  alias_attribute :to_s, :name
   attr_accessor :name
   
   def initialize(name)
@@ -13,7 +14,11 @@ class Theme
   # Find a theme, given the theme name
   def self.find(name)
     theme = self.new(name) 
-    return theme if self.installed_themes.include?(theme.path)
+    if self.installed_themes.include?(theme.path)
+      return theme
+    else
+      raise ThemeNotFound, "#{name} was not found in #{Theme.themes_root}"
+    end
   end
 
   def self.themes_root
@@ -32,3 +37,6 @@ class Theme
   end
   
 end
+
+class ThemeError < StandardError; end
+class ThemeNotFound < ThemeError; end

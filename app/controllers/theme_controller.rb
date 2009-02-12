@@ -33,7 +33,7 @@ class ThemeController < ActionController::Base
       src = current_theme.path + "/#{type}/#{file}"
       return (render :nothing => true, :status => 404) unless File.exists? src
 
-      send_file(src, :type => mime, :disposition => 'inline', :stream => true)
+      send_file(src, :type => mime, :disposition => 'inline', :stream => false)
     end
 
     def mime_for(filename)
