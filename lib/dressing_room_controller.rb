@@ -12,7 +12,7 @@ module DressingRoomController
       include DressingRoomController::InstanceMethods
       proc = Proc.new do |c|
         begin  
-          c.view_paths = self.view_paths = ::ActionController::Base.view_paths.dup.unshift(ActionView::Template::Path.new("#{c.current_theme.path}/views"))
+          c.prepend_view_path "#{c.current_theme.path}/views"
         rescue ThemeNotFound
         end
       end
